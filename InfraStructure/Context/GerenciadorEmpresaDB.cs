@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Gerenciador.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gerenciador.InfraStructure.Context
 {
@@ -8,6 +9,7 @@ namespace Gerenciador.InfraStructure.Context
         {
         }
 
-        //public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Empresa> Empresa { get; set; }
+        public DbSet<Colaborador> Colaborador { get; set; }
     }
 }
