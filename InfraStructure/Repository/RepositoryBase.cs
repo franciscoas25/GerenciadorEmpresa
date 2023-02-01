@@ -1,14 +1,9 @@
-﻿using Domain.Interfaces;
-using Domain.Shared;
-using InfraStructure.Context;
+﻿using Gerenciador.Domain.Interfaces;
+using Gerenciador.Domain.Shared;
+using Gerenciador.InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace InfraStructure.Repository
+namespace Gerenciador.InfraStructure.Repository
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity
     {
