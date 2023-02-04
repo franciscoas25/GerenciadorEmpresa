@@ -9,8 +9,9 @@ namespace Gerenciador.Service.Interfaces
 {
     public interface IEmpresaService
     {
-        //IEnumerable<Empresa> GetAllEmpresas();
-
-        Task<IEnumerable<Empresa>> GetAllEmpresas();
+        Task<IEnumerable<Empresa>> GetAllEmpresasAsync();
+        Task AddEmpresaAsync(Empresa empresa);
+        Task UpdateEmpresaAsync(Empresa empresa);
+        Task DeleteEmpresaAsync(Guid id);
     }
 }

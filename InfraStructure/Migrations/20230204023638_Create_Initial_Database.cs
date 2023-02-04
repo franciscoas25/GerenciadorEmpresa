@@ -32,7 +32,7 @@ namespace Gerenciador.InfraStructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeColaborador = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Idade = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Idade = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Celular = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
@@ -41,7 +41,7 @@ namespace Gerenciador.InfraStructure.Migrations
                     Numero = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UF = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
-                    CEP = table.Column<int>(type: "int", maxLength: 15, nullable: false),
+                    CEP = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Complemento = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

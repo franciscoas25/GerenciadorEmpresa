@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gerenciador.InfraStructure.Migrations
 {
     [DbContext(typeof(GerenciadorEmpresaDB))]
-    [Migration("20230201202516_Create_Initial_Database")]
+    [Migration("20230204023638_Create_Initial_Database")]
     partial class CreateInitialDatabase
     {
         /// <inheritdoc />
@@ -36,9 +36,10 @@ namespace Gerenciador.InfraStructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("CEP")
+                    b.Property<string>("CEP")
+                        .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CPF")
                         .IsRequired()
@@ -69,7 +70,6 @@ namespace Gerenciador.InfraStructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Idade")
-                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeColaborador")
@@ -133,17 +133,12 @@ namespace Gerenciador.InfraStructure.Migrations
             modelBuilder.Entity("Gerenciador.Domain.Models.Colaborador", b =>
                 {
                     b.HasOne("Gerenciador.Domain.Models.Empresa", "Empresa")
-                        .WithMany("Colaboradores")
+                        .WithMany()
                         .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Empresa");
-                });
-
-            modelBuilder.Entity("Gerenciador.Domain.Models.Empresa", b =>
-                {
-                    b.Navigation("Colaboradores");
                 });
 #pragma warning restore 612, 618
         }

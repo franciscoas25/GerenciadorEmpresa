@@ -6,10 +6,12 @@
 
         IQueryable<T> GetAll();
 
-        Task Add(T entity);
+        Task AddAsync(T entity);
 
         Task<T> GetByIdAsync(Guid id);
 
-        Task<int> SaveChangesAsync();
+        Task Update(T entity);
+
+        Task Delete(T entity);
     }
 }

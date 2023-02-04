@@ -1,67 +1,68 @@
 ﻿using Gerenciador.Domain.Models;
 using Gerenciador.Service.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GerenciadorEmpresa.Controllers
+namespace GerenciadorColaborador.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class ColaboradorController : ControllerBase
     {
-        private readonly IEmpresaService _empresaService;
+        private readonly IColaboradorService _colaboradorService;
 
-        public EmpresaController(IEmpresaService empresaService)
+        public ColaboradorController(IColaboradorService colaboradorService)
         {
-            _empresaService = empresaService ?? throw new ArgumentNullException(nameof(empresaService));
+            _colaboradorService = colaboradorService ?? throw new ArgumentNullException(nameof(colaboradorService));
         }
 
         [HttpGet]
         [Route("GetAllAsync")]
-        public async Task<IActionResult> GetAllEmpresasAsync() 
+        public async Task<IActionResult> GetAllColaboradoresAsync()
         {
             try
             {
-                var lstEmpresas = await _empresaService.GetAllEmpresasAsync();
+                var lstColaboradores = await _colaboradorService.GetAllColaboradoresAsync();
 
-                return Ok(lstEmpresas);
+                return Ok(lstColaboradores);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = ex.Message + (ex.InnerException != null ? " - " + ex.InnerException.Message : string.Empty);
 
                 return NotFound(msgErro);
-            }           
+            }
         }
 
         [HttpPost]
         [Route("AddAsync")]
-        public async Task<IActionResult> AddEmpresaAsync([FromBody] Empresa empresa)
+        public async Task<IActionResult> AddColaboradorAsync([FromBody] Colaborador colaborador)
         {
-            try 
+            try
             {
-                await _empresaService.AddEmpresaAsync(empresa);
+                await _colaboradorService.AddColaboradorAsync(colaborador);
 
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = ex.Message + (ex.InnerException != null ? " - " + ex.InnerException.Message : string.Empty);
-                
+
                 return StatusCode(500, msgErro);
             }
         }
 
         [HttpPut]
         [Route("UpdateAsync")]
-        public async Task<IActionResult> UpdateEmpresaAsync(Empresa empresa)
+        public async Task<IActionResult> UpdateColaboradorAsync(Colaborador colaborador)
         {
             try
             {
-                await _empresaService.UpdateEmpresaAsync(empresa);
+                await _colaboradorService.UpdateColaboradorAsync(colaborador);
 
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = ex.Message + (ex.InnerException != null ? " - " + ex.InnerException.Message : string.Empty);
 
@@ -71,11 +72,11 @@ namespace GerenciadorEmpresa.Controllers
 
         [HttpDelete]
         [Route("DeleteAsync/{id}")]
-        public async Task<IActionResult> DeleteEmpresaAsync([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteColaboradorAsync([FromRoute] Guid id)
         {
             try
             {
-                await _empresaService.DeleteEmpresaAsync(id);
+                await _colaboradorService.DeleteColaboradorAsync(id);
 
                 return Ok();
             }

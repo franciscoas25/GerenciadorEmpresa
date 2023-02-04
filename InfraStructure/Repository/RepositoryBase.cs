@@ -16,9 +16,10 @@ namespace Gerenciador.InfraStructure.Repository
             _entities = _gerenciadorEmpresaDB.Set<T>() ?? throw new ArgumentNullException(nameof(_entities));
         }
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
             await _gerenciadorEmpresaDB.AddAsync(entity);
+
             await _gerenciadorEmpresaDB.SaveChangesAsync();
         }
 
@@ -37,9 +38,18 @@ namespace Gerenciador.InfraStructure.Repository
             return await _entities.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task Update(T entity)
         {
-            return await _gerenciadorEmpresaDB.SaveChangesAsync();
+            _gerenciadorEmpresaDB.Update(entity);
+
+            await _gerenciadorEmpresaDB.SaveChangesAsync();
+        }
+
+        public async Task Delete(T entity)
+        {
+            _gerenciadorEmpresaDB.Remove(entity);
+
+            await _gerenciadorEmpresaDB.SaveChangesAsync();
         }
     }
 }

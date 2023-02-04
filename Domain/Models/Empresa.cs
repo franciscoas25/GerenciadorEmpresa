@@ -25,7 +25,5 @@ namespace Gerenciador.Domain.Models
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [MaxLength(15, ErrorMessage = "O campo {0} deve ter no ´máximo {1} caracteres")]
         public string Celular { get; set; }
-
-        public virtual IEnumerable<Colaborador> Colaboradores { get; set; }
     }    
 }
