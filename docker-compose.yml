@@ -1,7 +1,7 @@
 ﻿version: '3.4'
 services:
   api_gerenciador_empresa:
-    image: franciscoas25/api_gerenciador
+    image: api_gerenciador
     build:
       context: .
       dockerfile: Dockerfile      
