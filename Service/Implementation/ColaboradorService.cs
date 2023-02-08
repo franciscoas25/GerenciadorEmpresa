@@ -17,12 +17,14 @@ namespace Gerenciador.Service.Implementation
 
         public async Task<IEnumerable<Colaborador>> GetAllColaboradoresAsync()
         {
+            var lstColaboradores = await _colaboradorRepository.GetAllAsync();
+
             return await _colaboradorRepository.GetAllAsync();
         }
 
         public async Task AddColaboradorAsync(Colaborador colaborador)
         {
-            var empresa = await _empresaRepository.GetByIdAsync(colaborador.Empresa.Id).ConfigureAwait(false);
+            var empresa = await _empresaRepository.GetByIdAsync(colaborador.EmpresaId).ConfigureAwait(false);
 
             if (empresa == null)
                 return;
@@ -42,8 +44,7 @@ namespace Gerenciador.Service.Implementation
             if (colaboradorDB == null)
                 return;
 
-            colaboradorDB.NomeColaborador = colaborador.NomeColaborador;
-            colaboradorDB.Celular = colaborador.Celular;
+            colaboradorDB = colaborador;
 
             await _colaboradorRepository.Update(colaboradorDB);
         }
@@ -56,6 +57,14 @@ namespace Gerenciador.Service.Implementation
                 return;
 
             await _colaboradorRepository.Delete(colaborador);
+        }
+
+        public async Task<IEnumerable<Colaborador>> FiltrarColaboradoresPorEmpresaAsync(Guid empresaId)
+        {
+            if(empresaId == Guid.Empty)
+                return Enumerable.Empty<Colaborador>();
+            
+            return await _colaboradorRepository.FiltrarColaboradoresPorEmpresaAsync(empresaId);
         }
     }
 }

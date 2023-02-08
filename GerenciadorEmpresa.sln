@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorEmpresa", "GerenciadorEmpresa\GerenciadorEmpresa.csproj", "{6C3477D2-3E90-4E91-BBE9-90C5397DEA5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador.InfraStructure", "InfraStructure\Gerenciador.InfraStructure.csproj", "{D441778F-2420-4DBC-B11B-BE03BECA1120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gerenciador.InfraStructure", "InfraStructure\Gerenciador.InfraStructure.csproj", "{D441778F-2420-4DBC-B11B-BE03BECA1120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador.Domain", "Domain\Gerenciador.Domain.csproj", "{242674D1-BA18-4ACE-8820-A4086BC77AF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gerenciador.Domain", "Domain\Gerenciador.Domain.csproj", "{242674D1-BA18-4ACE-8820-A4086BC77AF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador.Service", "Service\Gerenciador.Service.csproj", "{879F02A5-C49A-489D-A21C-E287B3E8AA1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gerenciador.Service", "Service\Gerenciador.Service.csproj", "{879F02A5-C49A-489D-A21C-E287B3E8AA1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

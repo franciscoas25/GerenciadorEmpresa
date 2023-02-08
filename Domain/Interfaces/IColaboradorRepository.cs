@@ -9,5 +9,8 @@ namespace Gerenciador.Domain.Interfaces
 {
     public interface IColaboradorRepository : IRepositoryBase<Colaborador>
     {
+        //IEnumerable<Colaborador> FiltrarColaboradoresPorEmpresaAsync(Guid empresaId);
+
+        Task<IEnumerable<Colaborador>> FiltrarColaboradoresPorEmpresaAsync(Guid empresaId);
     }
 }

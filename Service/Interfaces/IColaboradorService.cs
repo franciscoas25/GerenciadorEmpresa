@@ -8,5 +8,6 @@ namespace Gerenciador.Service.Interfaces
         Task DeleteColaboradorAsync(Guid id);
         Task<IEnumerable<Colaborador>> GetAllColaboradoresAsync();
         Task UpdateColaboradorAsync(Colaborador colaborador);
+        Task<IEnumerable<Colaborador>> FiltrarColaboradoresPorEmpresaAsync(Guid empresaId);
     }
 }

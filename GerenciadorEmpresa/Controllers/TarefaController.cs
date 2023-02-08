@@ -2,36 +2,35 @@
 using Gerenciador.Domain.Models;
 using Gerenciador.Service.Interfaces;
 using GerenciadorEmpresa.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GerenciadorColaborador.Controllers
+namespace GerenciadorTarefa.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColaboradorController : ControllerBase
+    public class TarefaController : ControllerBase
     {
-        private readonly IColaboradorService _colaboradorService;
-        private readonly IEmpresaService _empresaService;
+        private readonly ITarefaService _tarefaService;
         private readonly IMapper _mapper;
 
-        public ColaboradorController(IColaboradorService colaboradorService, IEmpresaService empresaService, IMapper mapper)
+        public TarefaController(ITarefaService tarefaService, IMapper mapper)
         {
-            _colaboradorService = colaboradorService ?? throw new ArgumentNullException(nameof(colaboradorService));
-            _empresaService = empresaService ?? throw new ArgumentNullException(nameof(empresaService));
+            _tarefaService = tarefaService ?? throw new ArgumentNullException(nameof(tarefaService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
         [Route("GetAllAsync")]
-        public async Task<IActionResult> GetAllColaboradoresAsync()
+        public async Task<IActionResult> GetAllTarefasAsync()
         {
             try
             {
-                var lstColaboradores = await _colaboradorService.GetAllColaboradoresAsync();
+                var lstTarefas = await _tarefaService.GetAllTarefasAsync();
 
-                var lstColaboradoresViewModel = _mapper.Map<List<ColaboradorViewModel>>(lstColaboradores);
-                
-                return Ok(lstColaboradoresViewModel);
+                var lstTarefasViewModel = _mapper.Map<List<TarefaViewModel>>(lstTarefas);
+
+                return Ok(lstTarefasViewModel);
             }
             catch (Exception ex)
             {
@@ -43,11 +42,11 @@ namespace GerenciadorColaborador.Controllers
 
         [HttpPost]
         [Route("AddAsync")]
-        public async Task<IActionResult> AddColaboradorAsync([FromBody] Colaborador colaborador)
+        public async Task<IActionResult> AddTarefaAsync([FromBody] Tarefa tarefa)
         {
             try
             {
-                await _colaboradorService.AddColaboradorAsync(colaborador);
+                await _tarefaService.AddTarefaAsync(tarefa);
 
                 return Ok();
             }
@@ -61,11 +60,29 @@ namespace GerenciadorColaborador.Controllers
 
         [HttpPut]
         [Route("UpdateAsync")]
-        public async Task<IActionResult> UpdateColaboradorAsync(Colaborador colaborador)
+        public async Task<IActionResult> UpdateTarefaAsync(Tarefa tarefa)
         {
             try
             {
-                await _colaboradorService.UpdateColaboradorAsync(colaborador);
+                await _tarefaService.UpdateTarefaAsync(tarefa);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = ex.Message + (ex.InnerException != null ? " - " + ex.InnerException.Message : string.Empty);
+
+                return StatusCode(500, msgErro);
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateStatusAsync/{tarefaId}")]
+        public async Task<IActionResult> UpdateStatusAsync([FromRoute] string tarefaId)
+        {
+            try
+            {
+                await _tarefaService.UpdateStatusAsync(new Guid(tarefaId));
 
                 return Ok();
             }
@@ -79,11 +96,11 @@ namespace GerenciadorColaborador.Controllers
 
         [HttpDelete]
         [Route("DeleteAsync/{id}")]
-        public async Task<IActionResult> DeleteColaboradorAsync([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteTarefaAsync([FromRoute] Guid id)
         {
             try
             {
-                await _colaboradorService.DeleteColaboradorAsync(id);
+                await _tarefaService.DeleteTarefaAsync(id);
 
                 return Ok();
             }
@@ -96,14 +113,16 @@ namespace GerenciadorColaborador.Controllers
         }
 
         [HttpGet]
-        [Route("FiltrarColaboradoresPorEmpresaAsync/{empresaId}")]
-        public async Task<IActionResult> FiltrarColaboradoresPorEmpresaAsync([FromRoute] Guid empresaId)
+        [Route("FiltrarTarefasPorColaboradorAsync/{colaboradorId}")]
+        public async Task<IActionResult> FiltrarTarefasPorColaboradorAsync([FromRoute] Guid colaboradorId)
         {
             try
             {
-                var lstColaboradoresPorEmpresa = await _colaboradorService.FiltrarColaboradoresPorEmpresaAsync(empresaId);
-                
-                return Ok(lstColaboradoresPorEmpresa);
+                var lstTarefasPorColaborador = await _tarefaService.FiltrarTarefasPorColaboradorAsync(colaboradorId);
+
+                var lstTarefasPorColaboradorViewModel = _mapper.Map<List<TarefaViewModel>>(lstTarefasPorColaborador);
+
+                return Ok(lstTarefasPorColaboradorViewModel);
             }
             catch (Exception ex)
             {

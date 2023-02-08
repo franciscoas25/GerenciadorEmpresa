@@ -4,6 +4,7 @@ using Gerenciador.InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gerenciador.InfraStructure.Migrations
 {
     [DbContext(typeof(GerenciadorEmpresaDB))]
-    partial class GerenciadorEmpresaDBModelSnapshot : ModelSnapshot
+    [Migration("20230205201536_Create_Table_Tarefa")]
+    partial class CreateTableTarefa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,7 +99,7 @@ namespace Gerenciador.InfraStructure.Migrations
 
                     b.HasIndex("EmpresaId");
 
-                    b.ToTable("Colaborador", (string)null);
+                    b.ToTable("Colaborador");
                 });
 
             modelBuilder.Entity("Gerenciador.Domain.Models.Empresa", b =>
@@ -127,7 +130,7 @@ namespace Gerenciador.InfraStructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Empresa", (string)null);
+                    b.ToTable("Empresa");
                 });
 
             modelBuilder.Entity("Gerenciador.Domain.Models.Tarefas", b =>
@@ -150,7 +153,7 @@ namespace Gerenciador.InfraStructure.Migrations
 
                     b.HasIndex("ColaboradorId");
 
-                    b.ToTable("Tarefas", (string)null);
+                    b.ToTable("Tarefas");
                 });
 
             modelBuilder.Entity("Gerenciador.Domain.Models.Colaborador", b =>

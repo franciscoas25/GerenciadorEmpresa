@@ -14,7 +14,5 @@ namespace Gerenciador.InfraStructure.Repository
         public EmpresaRepository(GerenciadorEmpresaDB gerenciadorEmpresaDB) : base(gerenciadorEmpresaDB)
         {
         }
-
-
     }
 }

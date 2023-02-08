@@ -59,6 +59,8 @@ namespace Gerenciador.Domain.Models
         [MaxLength(15, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres")]
         public string Complemento { get; set; }
 
-        public virtual Empresa Empresa { get; set; }
+        public Guid EmpresaId { get; set; }
+
+        public virtual Empresa? Empresa { get; set; }
     }
 }

@@ -33,8 +33,7 @@ namespace Gerenciador.Service.Implementation
             if (empresaDB == null)
                 return;
 
-            empresaDB.NomeEmpresa = empresa.NomeEmpresa;
-            empresaDB.Celular = empresa.Celular;
+            empresaDB = empresa;
             
             await _empresaRepository.Update(empresaDB);
         }
@@ -47,6 +46,14 @@ namespace Gerenciador.Service.Implementation
                 return;
 
             await _empresaRepository.Delete(empresa);
+        }
+
+        public async Task<Empresa> GetEmpresaById(Guid id)
+        {
+            if (id == Guid.Empty)
+                return new Empresa();
+
+            return await _empresaRepository.GetByIdAsync(id);
         }
     }
 }

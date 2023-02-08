@@ -13,5 +13,6 @@ namespace Gerenciador.Service.Interfaces
         Task AddEmpresaAsync(Empresa empresa);
         Task UpdateEmpresaAsync(Empresa empresa);
         Task DeleteEmpresaAsync(Guid id);
+        Task<Empresa> GetEmpresaById(Guid id);
     }
 }
