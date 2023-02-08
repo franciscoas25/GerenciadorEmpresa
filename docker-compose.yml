@@ -1,11 +1,12 @@
 ﻿version: '3.4'
 services:
-  gerenciadorempresa:
-    image: gerenciador
+  api_gerenciador_empresa:
+    image: franciscoas25/api_gerenciador
     build:
-      context: .      
+      context: .
+      dockerfile: Dockerfile      
     ports:
-    - "8085:80"
+    - "7020:80"
     depends_on:
     - sqldata
 

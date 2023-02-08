@@ -70,12 +70,12 @@ namespace GerenciadorEmpresa.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteAsync/{id}")]
-        public async Task<IActionResult> DeleteEmpresaAsync([FromRoute] Guid id)
+        [Route("DeleteAsync/{empresaId}")]
+        public async Task<IActionResult> DeleteEmpresaAsync([FromRoute] Guid empresaId)
         {
             try
             {
-                await _empresaService.DeleteEmpresaAsync(id);
+                await _empresaService.DeleteEmpresaAsync(empresaId);
 
                 return Ok();
             }
